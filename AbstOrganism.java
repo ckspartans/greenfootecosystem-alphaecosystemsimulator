@@ -29,6 +29,8 @@ public abstract class AbstOrganism extends Actor{
     
     public abstract void grow();
     
+    public abstract void interact();
+    
     public abstract void reproduce();
     
     public abstract void age();
