@@ -1,2 +1,7 @@
 # greenfootecosystem-alphaecosystemsimulator
-Greenfoot Ecosystem Simulator created by Shehjad Khan and Sherman Grewal. (SHEHJAD KHAN)
+PROJECT TITLE: Alpha Ecosystem Simulator
+PURPOSE OF PROJECT:
+VERSION or DATE: v_1_0 12-10-2017
+HOW TO START THIS PROJECT:
+AUTHORS: Shehjad Khan, Sherman Grewal, Evan Kay, Ethan Flower, and Erdem Solayan.
+USER INSTRUCTIONS:
