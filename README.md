@@ -2,7 +2,7 @@
 
 PROJECT TITLE: Alpha Ecosystem Simulator
 
-PURPOSE OF PROJECT: Simulate a growing ecosystem with presets from user
+PURPOSE OF PROJECT: Simulate a growing ecosystem with presets made from user
 
 VERSION or DATE: v_1_0 12-10-2017
 
