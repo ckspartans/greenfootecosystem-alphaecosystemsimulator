@@ -85,7 +85,7 @@ public class AnythingEater extends AbstOrganism
                 //call the constructor for a new omnivore
                     //call die for the parent after calling the constructor
                     
-                    //first I need to add a carnivore to the abstorganism arraylist (so that the new carnivore actually exists)
+                    //first I need to add a carnivore to the abstorganism arraylist (so that the new omnivore actually exists)
                     world.omnivores.add(new AnythingEater());
                     //now I add the algae to the world, and let it spawn 20 pixels around the parent carnivore
                     world.addObject(world.omnivores.get(world.omnivores.size()-1), getX() + Greenfoot.getRandomNumber(50), getY() + Greenfoot.getRandomNumber(50));
