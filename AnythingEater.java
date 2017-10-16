@@ -14,9 +14,13 @@ public class AnythingEater extends AbstOrganism
      */
     
     //basic default constructor, this is where I initialize all the variables that must be in this class (because it inherits from the abstract class)
+    
+    //target is used to store the animals target
     AbstOrganism target = null;
     
+    //REFER TO ABSTORGANISM FOR DOCUMENTATION OF EACH VARIABLE
     public AnythingEater(){
+        //this is an omnivore, hence trophicLevel = 2
         trophicLevel = 2;
         age = 0;
         world.omnivores.add(this);
@@ -53,72 +57,52 @@ public class AnythingEater extends AbstOrganism
         //interact();
         grow();
         reproduce();
-        //die();
+        die();
       
        
     }
-    //this function basically adds energy to the plant, I add 0.1 energy per frame
     public void feed(){
-        //increase the energy amount
-        //later I will probably take into acount the amount of overlap with other ogranisms
-        //System.out.println("Feed Not implemented");
-       if(this.isTouching(Algae.class) || this.isTouching(PlantEater.class) || this.isTouching(AnythingEater.class)){ //&& target != null) { //&& target.trophicLevel < 3){
-           //System.out.println("heloolloolol");
-                //remove them from all lists
-               // world.plants.remove(getIntersectingObjects(Algae.class));
-               
-               //System.out.println("helolaksljdakjdkjajkdolloolol");
-               
+        //if an omnivore is touching a prey
+       if(this.isTouching(Algae.class) || this.isTouching(PlantEater.class) || this.isTouching(AnythingEater.class)){ 
+          
+               //add the appropriate energy to the omnivore
                energy += energyFactor * 0.1;
 
-                //remove them from the world
+                //remove the prey from the world
                removeTouching(null);
         }
     }
-    //Here I use the energy that the algae has to grow the algae to a certain size
+
     public void grow(){
-        //increase the size of the image bases on the current energy
-        //System.out.println("Grow Not implemented");
         siz = (int)energy;//(int) (0.2*energy+5);
         getImage().scale(siz,siz);
     }
-    //this program checks if the algae has enough energy to reproduce, and then creates two new algaes and kills off the old one
+    //this program checks if the omnivore has enough energy to reproduce, and then creates a new omnivore
     public void reproduce(){
-        //check tp see of their is enough energy (size??) to split
         //if yes then call the constructor for new ones and kill the last one
         if (energy >= repro_energy){
             //if yes than 
-                //call the constructor for two new algaes and kill the original
+                //call the constructor for a new omnivore
                     //call die for the parent after calling the constructor
                     
                     //first I need to add an algae to the abstorganism arraylist (so that the new algae actually exists)
-                   // world.omnivores.add(new AnythingEater());
+                    world.omnivores.add(new AnythingEater());
                     //now I add the algae to the world, and let him spawn 20 pixels around the old dead algae
-                    world.addObject(world.omnivores.get(world.omnivores.size()-1), getX() + Greenfoot.getRandomNumber(20), getY() + Greenfoot.getRandomNumber(20));
+                    world.addObject(world.omnivores.get(world.omnivores.size()-1), getX() + Greenfoot.getRandomNumber(50), getY() + Greenfoot.getRandomNumber(50));
                  
-                     
-                    //first I need to add an algae to the abstorganism arraylist (so that the new algae actually exists)
-                  //  lifeForms.add(new AnythingEater());
-                    //now I add the algae to the world, and let him spawn 20 pixels around the old dead algae
-                  //  world.addObject(lifeForms.get(lifeForms.size()-1), getX() - Greenfoot.getRandomNumber(20), getY() - Greenfoot.getRandomNumber(-20));
-                    
-                    //kill the old algae now
                     //die();
-                    energy = 0;
+                    energy = 50;
         }
-        //System.out.println("Reproduce Not implemented");
     }
-    //this function adds age to the algae ( I dont really use it right now, but feel free to use it)
+    //this function adds age( I dont really use it right now, but feel free to use it)
     public void age(){
-        //increase age
-        //and check to see if past lifespan
-        //if then kill them
-        energy -= 0.25;
        // System.out.println("Not implemented");
     }
-    //this function is where the algae dies 
+    //this function is where the organism dies 
     public void die(){
+        //the energy will decrease based off of size of animal
         energy = energy - (0.01 * siz);
+        //if they ran out of energy
         if (energy < 1){
                 //???Add a corspe object???
                 
@@ -128,29 +112,29 @@ public class AnythingEater extends AbstOrganism
                 //remove them from the world
                 world.removeObject(this);
                 
-                //System.out.println("Not implemented");
+             
         }
     }
-    //you dont really need this, but if you come up with a cool idea please let me know first
     public void move(){
-        //not needed
-        //not needed
         //System.out.println("Not implemented");
-        //setLocation(getX() + Greenfoot.getRandomNumber(5), getY() + Greenfoot.getRandomNumber(5));
-             
+        
+        //move constantly
         move((int)speed);
+        //if there are targets nearby
         if(targets != null && !targets.isEmpty()){
-           // System.out.println("YEA");
+           //track them
                         thinker.track();
         }
+        //if there are no targets nearby
         else if (targets == null || targets.isEmpty()) {
-           // System.out.println("NO");
-            //setLocation((int)(getX() + Math.cos(angle) * speed), (int)(getY() + Math.sin(angle) * speed));
+            //keep moving randomly and try to find them
               if(Greenfoot.getRandomNumber(100) < 20){
                     turn(Greenfoot.getRandomNumber(180));
              }
         }
+        //if your at the edge
         if(isAtEdge()){
+        //turn in other direction
             turn(180);
         }
     }
