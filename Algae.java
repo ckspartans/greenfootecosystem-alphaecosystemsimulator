@@ -3,8 +3,8 @@ import java.util.*;
 
 /**NOTES
  * 
- * need to have boundaries but they wont f*cking work(nvm they work)
- * now die fucks up
+ * need to have boundaries but they wont f*cking work
+ * 
  * 
  */
 
@@ -58,15 +58,15 @@ public class Algae extends AbstOrganism
 
         for (int i = 0; i < lifeforms.size(); i++){
             if (lifeforms.get(i) instanceof Algae && lifeforms.get(i).getWorld()!=null /*&& (getX() > 0 && getX() < world.getWidth())&&(getX() > 0 && getY() < world.getHeight())*/){
-                System.out.println("Ohhh");
+                //System.out.println("Ohhh");
                 int xs = lifeforms.get(i).getX();
                 int ys = lifeforms.get(i).getY();
                 System.out.println(lifeforms.get(i) + " " + xs + " " + ys);                
-                if (xs < 0){die();}
-                else if (xs > world.getWidth()){die();}
-                else if (ys < 0){die();}
-                else if (ys > world.getHeight()){die();}
-                System.out.println("Yaaaaaa");
+                if (xs <= 0){die();}
+                else if (xs >= world.getWidth()){die();}
+                else if (ys <= 0){die();}
+                else if (ys >= world.getHeight()){die();}
+                //System.out.println("Yaaaaaa");
             }
         }
 
@@ -137,7 +137,7 @@ public class Algae extends AbstOrganism
         //if then kill them
         //double rate = Greenfoot.getRandomNumber(35);//random rate of growth, allowing for varrying ages
         age = uniTimer(age, 0.175);//incriments the the age NOTE:0.02 will incriment at 1 per second
-
+        //average lifespan is around 68
         //creates 10% odds of death when they turn 65
         if(deathCheck == true){
             if(age > 65){
@@ -152,7 +152,7 @@ public class Algae extends AbstOrganism
 
             }
         }
-        //death unavoidable after 70
+        //death unavoidable after 75
         if(age > 75){
             die();
         }
@@ -162,13 +162,15 @@ public class Algae extends AbstOrganism
     //this function is where the algae dies 
     public void die(){
         //???Add a corspe object??? maybe
+        
+        //remove them from the world
 
+        //getWorld().removeObject(this);
+        //need to fix this in second itration
         //remove them from all lists
         lifeforms.remove(this);
 
-        //remove them from the world
-
-        getWorld().removeObject(this);
+        
 
         System.out.println("Die not implemented");
     }
