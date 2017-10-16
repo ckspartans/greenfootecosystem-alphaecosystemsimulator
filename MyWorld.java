@@ -11,7 +11,7 @@ public class MyWorld extends World
     TestOrganism dolphin;
     int foodEaten = 0;
     IntroScreen intro;
-    ArrayList <Actor> organisms = new ArrayList<Actor> ();
+    //The following arraylists are made for each type of organism
     static public ArrayList <Algae> plants = new ArrayList<Algae> (5);
     static public ArrayList <PlantEater> herbivores = new ArrayList<PlantEater> (5);
     static public ArrayList <MeatEater> carnivores = new ArrayList<MeatEater> (5);
@@ -26,7 +26,9 @@ public class MyWorld extends World
         super(800, 700, 1);
         intro = new IntroScreen(this);
         Greenfoot.setWorld(intro);
+        //do this 5 times
         for(int i = 0; i < 5; i++){
+            //add a new organism to the world for each type of organism
             plants.add(new Algae());
             addObject(new Algae(), Greenfoot.getRandomNumber(750), Greenfoot.getRandomNumber(600));
             herbivores.add(new PlantEater());
