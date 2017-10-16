@@ -15,7 +15,9 @@ public class AI
     public AbstOrganism target;
     //This object holds the animals closest predator (so that it could decide whether or not it is appropriate to flee it 
     public AbstOrganism nearestPredator;
+    //This object stores the main organism that will be doing the thinking
     public AbstOrganism owner = null;
+    //This int stores the 
     public int energyFactor;
     public int desireFactor = 0;
     // public static List<AbstOrganism> targets;
