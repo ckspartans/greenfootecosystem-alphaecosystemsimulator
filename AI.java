@@ -6,11 +6,14 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
+//This class handles all thinking functions the organisms (except the algaes) have
 public class AI  
 {
     // instance variables - replace the example below with your own
-
+    
+    //The object target is used to hold the organism the main organism will target as prey
     public AbstOrganism target;
+    //This object holds the animals closest predator (so that it could decide whether or not it is appropriate to flee it 
     public AbstOrganism nearestPredator;
     public AbstOrganism owner = null;
     public int energyFactor;
