@@ -3,16 +3,8 @@ import java.util.*;
 
 /**NOTES
  * 
- * need to have boundaries but they wont f*cking work
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
+ * need to have boundaries but they wont f*cking work(nvm they work)
+ * now die fucks up
  * 
  */
 
@@ -61,24 +53,23 @@ public class Algae extends AbstOrganism
         feed();
         grow();
         age();
-        
+
         //System.out.println(getX() + " " + getY());
-        for (int i = 0; i < lifeforms.size()-1; i++){
-            if (lifeforms.get(i) instanceof Algae && lifeforms.get(i) != null){
+
+        for (int i = 0; i < lifeforms.size(); i++){
+            if (lifeforms.get(i) instanceof Algae && lifeforms.get(i).getWorld()!=null /*&& (getX() > 0 && getX() < world.getWidth())&&(getX() > 0 && getY() < world.getHeight())*/){
+                System.out.println("Ohhh");
                 int xs = lifeforms.get(i).getX();
                 int ys = lifeforms.get(i).getY();
-                System.out.println("Ohhh");
-                if (xs < 20){die();}
-                else if (xs > world.getWidth()-20){die();}
-                else if (ys < 20){die();}
-                else if (ys > world.getHeight()-20){die();}
+                System.out.println(lifeforms.get(i) + " " + xs + " " + ys);                
+                if (xs < 0){die();}
+                else if (xs > world.getWidth()){die();}
+                else if (ys < 0){die();}
+                else if (ys > world.getHeight()){die();}
                 System.out.println("Yaaaaaa");
             }
         }
-       
-            
-          
-        
+
         System.out.println("Lifeforms" + lifeforms.size());
     }
     //universal timer
@@ -96,7 +87,7 @@ public class Algae extends AbstOrganism
         //increase the energy amount
         //later I will probably take into acount the amount of overlap with other ogranisms
         System.out.println("Feed Not implemented");
-        energy += 0.1;
+        energy += (double)Greenfoot.getRandomNumber(3)/10;//makes algae grow at different rates
         //I show the energy on the screen so I know what energy the algae is at
         world.showText("Energy" + energy , 100,100);
     }
@@ -127,12 +118,13 @@ public class Algae extends AbstOrganism
                 //now I add the algae to the world, and let him spawn around the old dead algae
                 int x = getX() + Greenfoot.getRandomNumber(siz*2)-Greenfoot.getRandomNumber(siz*4);
                 int y = getY() + Greenfoot.getRandomNumber(siz*2)-Greenfoot.getRandomNumber(siz*4);
-                world.addObject(lifeforms.get(lifeforms.size()-1), x, y);//creates new object
+
+                getWorld().addObject(lifeforms.get(lifeforms.size()-1), x, y);//creates new object
 
                 //restricts x and y values to the map size
             }
             //kill the old algae now
-
+            energy = 0;
             die();
 
         }
@@ -161,11 +153,11 @@ public class Algae extends AbstOrganism
             }
         }
         //death unavoidable after 70
-        if(age > 70){
+        if(age > 75){
             die();
         }
         world.showText("Age" + age , 100,300);
-        System.out.println(" Not implemented");
+        System.out.println("Age not implemented");
     }
     //this function is where the algae dies 
     public void die(){
@@ -175,9 +167,10 @@ public class Algae extends AbstOrganism
         lifeforms.remove(this);
 
         //remove them from the world
-        world.removeObject(this);
 
-        System.out.println("Not implemented");
+        getWorld().removeObject(this);
+
+        System.out.println("Die not implemented");
     }
     //you dont really need this, but can evole into alage latching onto carnivores
     public void move(){
