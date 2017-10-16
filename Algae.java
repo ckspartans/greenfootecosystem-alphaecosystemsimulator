@@ -24,10 +24,12 @@ public class Algae extends AbstOrganism
         //This means that the algae needs 25 energy to reproduce
         repro_energy = 100;
         //This means that the algae will be 100 by 100 in size
-        siz = 100;//(int) (0.2*energy+5);
+        siz = 100;
+        //the health will start out at 100
         health = 100;
+        //the algae will have 50 energy
         energy = 50;
-        speed = 20;
+        speed = 0;
         att = 50;
         def = 50;
         mutation_rate = 0;
@@ -40,7 +42,7 @@ public class Algae extends AbstOrganism
   
     public void act() 
     {
-        // Add your action code here.
+        
         //This checks if the world is being needed to be called or not
         if( world == null){
             world = (MyWorld) getWorld();
@@ -49,23 +51,18 @@ public class Algae extends AbstOrganism
         //this is where I call all the functions 
         reproduce();
         age();
-                grow();
+        grow();
         feed();
         
     }
     //this function basically adds energy to the plant, I add 0.1 energy per frame
     public void feed(){
         //increase the energy amount
-        //later I will probably take into acount the amount of overlap with other ogranisms
-        //System.out.println("Feed Not implemented");
         energy += 0.1;
-        //I show the energy on the screen so I know what energy the algae is at
-        //world.showText("Energy" + energy , 100,100);
     }
     //Here I use the energy that the algae has to grow the algae to a certain size
     public void grow(){
         //increase the size of the image bases on the current energy
-        //System.out.println("Grow Not implemented");
         siz = (int) (0.2*energy+5);
         getImage().scale(siz,siz);
     }
