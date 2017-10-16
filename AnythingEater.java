@@ -85,16 +85,16 @@ public class AnythingEater extends AbstOrganism
                 //call the constructor for a new omnivore
                     //call die for the parent after calling the constructor
                     
-                    //first I need to add an algae to the abstorganism arraylist (so that the new algae actually exists)
+                    //first I need to add a carnivore to the abstorganism arraylist (so that the new carnivore actually exists)
                     world.omnivores.add(new AnythingEater());
-                    //now I add the algae to the world, and let him spawn 20 pixels around the old dead algae
+                    //now I add the algae to the world, and let it spawn 20 pixels around the parent carnivore
                     world.addObject(world.omnivores.get(world.omnivores.size()-1), getX() + Greenfoot.getRandomNumber(50), getY() + Greenfoot.getRandomNumber(50));
                  
                     //die();
                     energy = 50;
         }
     }
-    //this function adds age( I dont really use it right now, but feel free to use it)
+ 
     public void age(){
        // System.out.println("Not implemented");
     }
@@ -116,8 +116,7 @@ public class AnythingEater extends AbstOrganism
         }
     }
     public void move(){
-        //System.out.println("Not implemented");
-        
+
         //move constantly
         move((int)speed);
         //if there are targets nearby
