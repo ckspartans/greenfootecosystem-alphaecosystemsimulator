@@ -42,8 +42,6 @@ public class MyWorld extends World
     }
 
     public void act(){
-        if(Greenfoot.isKeyDown("space")){
-            removeObject(dolphin);
-        }
+
     }
 }
