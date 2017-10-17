@@ -54,20 +54,15 @@ public class Algae extends AbstOrganism
         grow();
         age();
 
-        //System.out.println(getX() + " " + getY());
-
-        for (int i = 0; i < lifeforms.size(); i++){
-            if (lifeforms.get(i) instanceof Algae && lifeforms.get(i).getWorld()!=null /*&& (getX() > 0 && getX() < world.getWidth())&&(getX() > 0 && getY() < world.getHeight())*/){
-                //System.out.println("Ohhh");
-                int xs = lifeforms.get(i).getX();
-                int ys = lifeforms.get(i).getY();
-                System.out.println(lifeforms.get(i) + " " + xs + " " + ys);                
-                if (xs <= 0){die();}
-                else if (xs >= world.getWidth()){die();}
-                else if (ys <= 0){die();}
-                else if (ys >= world.getHeight()){die();}
-                //System.out.println("Yaaaaaa");
-            }
+        //restricts x and y values to the map size
+        if (getWorld()!=null){
+            //System.out.println("Ohhh");
+            System.out.println(" " + getX() + " " + getY());
+            if (getX() <= 0){die();}
+            else if (getX() >= world.getWidth()){die();}
+            else if (getY() <= 0){die();}
+            else if (getY() >= world.getHeight()){die();}
+            //System.out.println("Yaaaaaa");
         }
 
         System.out.println("Lifeforms" + lifeforms.size());
@@ -116,19 +111,19 @@ public class Algae extends AbstOrganism
                 //first I need to add an algae to the abstorganism arraylist (so that the new algae actually exists)
                 lifeforms.add(new Algae());
                 //now I add the algae to the world, and let him spawn around the old dead algae
-                int x = getX() + Greenfoot.getRandomNumber(siz*2)-Greenfoot.getRandomNumber(siz*4);
-                int y = getY() + Greenfoot.getRandomNumber(siz*2)-Greenfoot.getRandomNumber(siz*4);
+                int x = getX() + Greenfoot.getRandomNumber(20)-Greenfoot.getRandomNumber(40);
+                int y = getY() + Greenfoot.getRandomNumber(20)-Greenfoot.getRandomNumber(40);
 
                 getWorld().addObject(lifeforms.get(lifeforms.size()-1), x, y);//creates new object
 
-                //restricts x and y values to the map size
+                
             }
             //kill the old algae now
             energy = 0;
             die();
 
         }
-        System.out.println("Reproduce Not implemented");
+        System.out.println("Reproduce implemented");
     }
     //this function adds age to the algae, but accelerates it too fast. needs work
     public void age(){
@@ -157,20 +152,19 @@ public class Algae extends AbstOrganism
             die();
         }
         world.showText("Age" + age , 100,300);
-        System.out.println("Age not implemented");
+        System.out.println("Age implemented");
     }
     //this function is where the algae dies 
     public void die(){
         //???Add a corspe object??? maybe
-        
-        //remove them from the world
 
-        //getWorld().removeObject(this);
-        //need to fix this in second itration
+        //remove them from the world if not removed already
+        if (getWorld()!=null){
+            getWorld().removeObject(this);
+        }
+
         //remove them from all lists
         lifeforms.remove(this);
-
-        
 
         System.out.println("Die not implemented");
     }
