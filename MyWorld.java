@@ -39,16 +39,6 @@ public class MyWorld extends World
             addObject(new MeatEater(), Greenfoot.getRandomNumber(750), Greenfoot.getRandomNumber(600));
         }
 
-       // setPaintOrder(Algae.class);
-        //dolphin = new TestOrganism();
-        //addObject(dolphin, 300,200);
-        //plants.add(new Algae());
-       // herbivores.add(new PlantEater());
-        //carnivores.add(new MeatEater());
-        //addObject(plants.get(plants.size()-1), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
-       /* for(int i = 0; i < 10; i++){
-           addObject(new Pumpkin(), Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
-        } */
     }
 
     public void act(){
