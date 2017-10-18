@@ -33,6 +33,8 @@ public class MeatEater extends AbstOrganism
         thinker = new AI(this);
         sight = 150;
         energyFactor = 0;
+        
+        reproducer = new Reproduce(this);
   
     }
   
