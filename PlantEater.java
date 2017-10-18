@@ -35,6 +35,8 @@ public class PlantEater extends AbstOrganism
         sight = 100;
         energyFactor = 0;
         
+        reproducer = new Reproduce(this);
+        
     }
   
     public void act() 
