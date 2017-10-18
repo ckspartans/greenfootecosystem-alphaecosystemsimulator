@@ -126,8 +126,9 @@ public class PlantEater extends AbstOrganism
    
     public int mutate(int trait) {
         int mutate = Greenfoot.getRandomNumber(100);
-         
-         if (mutate <= mutation_rate) {
+        // randomly mutates all traits based on initial mutation rate
+        if (mutate <= mutation_rate) {
+             // traits mutated are mutated by a constant (which can also mutate to change)
              trait = trait+(trait*((int) mutation_rate/100));
          }
 
