@@ -37,6 +37,8 @@ public class AnythingEater extends AbstOrganism
         thinker = new AI(this);
         sight = 20;
         energyFactor = 0;
+        
+        reproducer = new Reproduce(this);
 
     }
   
@@ -87,6 +89,7 @@ public class AnythingEater extends AbstOrganism
  
     public void age(){
        // System.out.println("Not implemented");
+       age++;
     }
     //this function is where the organism dies 
     public void die(){
@@ -125,9 +128,17 @@ public class AnythingEater extends AbstOrganism
             turn(180);
          }
     }
-    //try to complete this
-    public void mutate(){
-    }
+    public int mutate(int trait) {
+        int mutate = Greenfoot.getRandomNumber(100);
+        // randomly mutates all traits based on initial mutation rate
+        if (mutate <= mutation_rate) {
+             // traits mutated are mutated by a constant (which can also mutate to change)
+             trait = trait+(trait*((int) mutation_rate/100));
+         }
+
+        return trait;
+     }
+
     public void interact(){
 
    }   
