@@ -123,9 +123,15 @@ public class PlantEater extends AbstOrganism
             turn(180);
         }
     }
-    //try to complete this
-    public void mutate(){
-
+   
+   public int mutate(int trait) {
+       int mutate = Greenfoot.getRandomNumber(100);
+        
+        if (mutate <= mutation_rate) {
+            trait = trait+(trait*((int) mutation_rate/100));
+        }
+        
+       return trait;
     }
 
     public void interact(){
