@@ -39,6 +39,8 @@ public abstract class AbstOrganism extends Actor
      
      double energyFactor;
      
+    Reproduce reproducer;
+     
     double energyToReproduce;
     double mutationFactor;
     int reproduceFactor;

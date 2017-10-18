@@ -37,6 +37,8 @@ public class Algae extends AbstOrganism
         targets = null;
         sight = 0;
         energyFactor = 0;
+        
+        reproducer = new Reproduce(this);
      
     }
   
