@@ -40,6 +40,8 @@ public abstract class AbstOrganism extends Actor
      double energyFactor;
     
      public double hungerFactor;
+     
+     Reproduce reproducer;
     
     public void act() 
     {
