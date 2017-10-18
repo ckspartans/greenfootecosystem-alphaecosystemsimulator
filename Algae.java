@@ -37,6 +37,8 @@ public class Algae extends AbstOrganism
         targets = null;
         sight = 0;
         energyFactor = 0;
+        
+        reproducer = new Reproduce(this);
      
     }
   
@@ -53,7 +55,7 @@ public class Algae extends AbstOrganism
         age();
         grow();
         feed();
-         reproduce();
+        reproduce();
     }
     //this function basically adds energy to the plant, I add 0.1 energy per frame
     public void feed(){
@@ -84,6 +86,7 @@ public class Algae extends AbstOrganism
     }
     //this function adds age to the algae ( I dont really use it right now, but feel free to use it)
     public void age(){
+        age++;
     }
     //this function is where the algae dies 
     public void die(){
@@ -102,10 +105,17 @@ public class Algae extends AbstOrganism
         //not needed
         //System.out.println("Not implemented");
     }
-    //try to complete this
-    public void mutate(){
+    public int mutate(int trait) {
+        int mutate = Greenfoot.getRandomNumber(100);
+        // randomly mutates all traits based on initial mutation rate
+        if (mutate <= mutation_rate) {
+             // traits mutated are mutated by a constant (which can also mutate to change)
+             trait = trait+(trait*((int) mutation_rate/100));
+         }
 
-    }
+        return trait;
+     }
+
     public void interact(){
         //not implemented yet
     }
