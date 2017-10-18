@@ -27,12 +27,14 @@ public class MeatEater extends AbstOrganism
         speed = 5;
         att = 50;
         def = 50;
-        mutation_rate = 0;
+        mutation_rate = 5;
         MyWorld world;
         targets = null;
         thinker = new AI(this);
         sight = 30;
         energyFactor = 0;
+        
+        reproducer = new Reproduce(this);
 
     }
 
@@ -120,8 +122,15 @@ public class MeatEater extends AbstOrganism
             turn(180);
         }
     }
-    public void mutate(){
-
+    public int mutate(int trait) {
+       int mutate = Greenfoot.getRandomNumber(100);
+        // randomly mutates all traits based on initial mutation rate
+        if (mutate <= mutation_rate) {
+            // traits mutated are mutated by a constant (which can also mutate to change)
+            trait = trait+(trait*((int) mutation_rate/100));
+        }
+        
+       return trait;
     }
 
     public void interact(){
