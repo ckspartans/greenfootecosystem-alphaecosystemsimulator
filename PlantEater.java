@@ -28,12 +28,15 @@ public class PlantEater extends AbstOrganism
         speed = 5;
         att = 50;
         def = 50;
-        mutation_rate = 0;
+        mutation_rate = 5;
         MyWorld world;
         targets = null;
         thinker = new AI(this);
         sight = 75;
         energyFactor = 0;
+        
+        reproducer = new Reproduce(this);
+
 
     }
 
