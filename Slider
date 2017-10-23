@@ -16,8 +16,8 @@ public class slider extends Actor
     {
         // Add your action code here.
         //slider min and max are based off the centre of the shape
-        int sliderXmin = 0;
-        int sliderXmax = 200;
+        int sliderXmin = 200;
+        int sliderXmax = 400;
         int y = getY();
         System.out.println(getX());
         MouseInfo mouse = Greenfoot.getMouseInfo();// makes getting info about the mouse (x and y values, button pressed, and if null or not) faster without writing longer code
@@ -32,6 +32,11 @@ public class slider extends Actor
                 if(sliderXmin < mouse.getX() && sliderXmax > mouse.getX()){setLocation(mouse.getX(), y);}//sets slider location to mouse X if within paramiters       
                 else if(mouse.getX() > sliderXmax){setLocation(sliderXmax, y);}//this and next line sets the slider X value to the max/min X value for slider if mouse outside of paramiters   
                 else if(mouse.getX() > sliderXmin){setLocation(sliderXmin, y);}
+            }
+            else{
+                int number = getX() - sliderXmin;
+                System.out.println(number);
+                
             }
         } 
 
