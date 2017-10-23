@@ -1,0 +1,39 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class slider here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class slider extends Actor
+{
+    /**
+     * Act - do whatever the slider wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        // Add your action code here.
+        //slider min and max are based off the centre of the shape
+        int sliderXmin = 0;
+        int sliderXmax = 200;
+        int y = getY();
+        System.out.println(getX());
+        MouseInfo mouse = Greenfoot.getMouseInfo();// makes getting info about the mouse (x and y values, button pressed, and if null or not) faster without writing longer code
+        boolean mouseHeld = false;//boolean to check if mouse is held
+        if (mouse != null){
+            if (Greenfoot.mouseDragged(this)){// checks to see if mouse is held down on this object 
+                mouseHeld = true;
+            } else if (Greenfoot.mousePressed(this)) {
+                mouseHeld = false;
+            }
+            if(mouseHeld == true && mouse.getButton() == 1){// if mouse right button held dowm 
+                if(sliderXmin < mouse.getX() && sliderXmax > mouse.getX()){setLocation(mouse.getX(), y);}//sets slider location to mouse X if within paramiters       
+                else if(mouse.getX() > sliderXmax){setLocation(sliderXmax, y);}//this and next line sets the slider X value to the max/min X value for slider if mouse outside of paramiters   
+                else if(mouse.getX() > sliderXmin){setLocation(sliderXmin, y);}
+            }
+        } 
+
+    }    
+}
