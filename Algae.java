@@ -71,33 +71,37 @@ public class Algae extends AbstOrganism
         siz = (int) (0.2*energy+5);
         getImage().scale(siz,siz);
     }
-    //this program checks if the algae has enough energy to reproduce, and then creates two new algaes and kills off the old one
+    //this function checks if the algae has enough energy to reproduce, and then creates two new algaes and kills off the old one while the new ones inherit the previous algae's traits and have a chance to mutate their traits
     public void reproduce(){
-        //check tp see of their is enough energy (size??) to split
+        //check to see of there is enough energy to split
         //if yes then call the constructor for new ones and kill the last one
         if (energy >= repro_energy){
 
+            // spawn new algae
             world.plants.add(new Algae());
             world.addObject(world.plants.get(world.plants.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
 
+            // new algae inherits original algae's traits and has a chance to mutate them
             world.plants.get(world.plants.size()-1).repro_energy = mutate(repro_energy);
             world.plants.get(world.plants.size()-1).siz = mutate(siz);
             world.plants.get(world.plants.size()-1).speed = mutate(speed);
             world.plants.get(world.plants.size()-1).mutation_rate = mutate(mutation_rate);
             world.plants.get(world.plants.size()-1).sight = mutate(sight);
             
+            // spawn new algae
             world.plants.add(new Algae());
             world.addObject(world.plants.get(world.plants.size()-1), getX() - Greenfoot.getRandomNumber(200), getY() - Greenfoot.getRandomNumber(200));
 
+            // new algae inherits original algae's traits and has a chance to mutate them
             world.plants.get(world.plants.size()-1).repro_energy = mutate(repro_energy);
             world.plants.get(world.plants.size()-1).siz = mutate(siz);
             world.plants.get(world.plants.size()-1).speed = mutate(speed);
             world.plants.get(world.plants.size()-1).mutation_rate = mutate(mutation_rate);
             world.plants.get(world.plants.size()-1).sight = mutate(sight);
             
+            // kill original algae
             die();
         }
-        //System.out.println("Reproduce Not implemented");
     }
     //this function adds age to the algae ( I dont really use it right now, but feel free to use it)
     public void age(){
@@ -112,19 +116,24 @@ public class Algae extends AbstOrganism
         //remove them from the world
         world.removeObject(this);
     }
-    //you dont really need this, but if you come up with a cool idea please let me know first
+    
     public void move(){
         //not needed
         //System.out.println("Not implemented");
     }
-    //try to complete this
+    
+    // when traits of an organism are inputed, there is a chance that it mutates and returns the newly mutated trait
     public int mutate(int trait) {
+       // generates random number between 0 and 100
        int mutate = Greenfoot.getRandomNumber(100);
         
+        // if the random number is less than or equal to the mutation rate
         if (mutate <= mutation_rate) {
+            // the inputed trait is mutated by adding the initial trait by the mutation factor
             trait = trait+(trait*((int) mutation_rate/100));
         }
         
+       // returns initial/mutated trait depending on if mutated
        return trait;
     }
 }
