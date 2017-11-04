@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=pStats
+comment0.text=\n\ Write\ a\ description\ of\ class\ HealthBar\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=pStats()
+comment1.text=public\ HealthBar(Enemy\ o,\ int\ maxHeath){\n\ \ \ \ \ \ \ \ healthFill\ \=\ new\ GreenfootImage(20,5);\ \ \n\ \ \ \ \ \ \ \ color\ \=\ Color(0,\ 255,\ 0);\n\ \ \ \ \ \ \ \ this.maxHealth\ \=\ o.health;\n\ \ \ \ \ \ \ \ owner\ \=\ o;\n\ \ \ \ \ \ \ \ size\ \=\ owner.getImage().getHeight()/2;\n\n}
+comment2.params=numerator
+comment2.target=pStats(java.util.ArrayList)
+comment3.params=numerator\ organismName
+comment3.target=pStats(java.util.ArrayList,\ java.lang.String)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ update()
+numComments=6
