@@ -1,6 +1,5 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
-
 /**
  * Write a description of class AbstOrgansim here.
  * 
@@ -42,8 +41,7 @@ public abstract class AbstOrganism extends Actor
     
      public double hungerFactor;
      
-     Reproduce reproducer;
-    
+     public EnergyBar energyIndicator;
     public void act() 
     {
         // Add your action code here.
@@ -55,8 +53,6 @@ public abstract class AbstOrganism extends Actor
     public abstract void feed();
 
     public abstract void grow();
-        
-    public abstract void interact();
     
     public abstract void reproduce();
 

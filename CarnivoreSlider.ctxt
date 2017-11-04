@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=CarnivoreSlider
+comment0.text=\n\ Write\ a\ description\ of\ class\ slider\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ sliderNumber\ or\ a\ date)\n
+comment1.params=sliderNumber\ min\ max
+comment1.target=int\ text(int,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+numComments=3
