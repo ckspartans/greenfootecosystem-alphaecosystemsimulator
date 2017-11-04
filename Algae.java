@@ -108,7 +108,7 @@ public class Algae extends AbstOrganism
     }
     //this function is where the algae dies 
     public void die(){
-        //???Add a corspe object???
+        // Add a corspe object
         //remove them from all lists
         world.plants.remove(this);
                 //System.out.println("Not implemented");
