@@ -8,47 +8,41 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
+
+//this class handles the stats of each species
 public class pStats extends Actor
 {
    GreenfootImage temp;
+   //this color object will be used to visually represent the health of the species as a whole.
    Color color = new Color (0,255,0); 
-    //Enemy owner;
+    //the max health would be the amount of organisms in the world as a whole
     int maxHealth;
     int size;
+    //the health would be the size of the organism array I send in
     int health;
     MyWorld world;
+    //This label will be used for when I use show text so that I know which bar represents which species
     public String label = "Organism";
+    //This arrayList will be used store the certain species we send into this class to check its health
     public ArrayList <AbstOrganism> organismStats = new ArrayList <AbstOrganism> ();
-    /*public HealthBar(Enemy o, int maxHeath){
-        healthFill = new GreenfootImage(20,5);  
-        color = Color(0, 255, 0);
-        this.maxHealth = o.health;
-        owner = o;
-        size = owner.getImage().getHeight()/2;
-
-    }*/
-    public pStats(){
-        GreenfootImage healthfill = new GreenfootImage(200,5);
-        size = 100;
-    }
-    public pStats(ArrayList<AbstOrganism> numerator){
-        organismStats = numerator;
-        GreenfootImage healthfill = new GreenfootImage(200,5);
-        size = 100;
-    }
+   //this constructor needs the type of species we send in (so the arrayList from the MyWorld class) & the name of the organism
     public pStats(ArrayList<AbstOrganism> numerator, String organismName){
+        //the label will be what i pass in (which would be the name of the species)
         label = organismName;
+        //the organismStats will be the arrayList I send in from the MyWorld class 
         organismStats = numerator;
         GreenfootImage healthfill = new GreenfootImage(200,5);
         size = 100;
     }
     public void act(){
+    //Get MyWorld
         if( world == null){
             world = (MyWorld) getWorld();
+            //show the text of which species' health bar we are showing
              world.showText(label , getX(), getY()-50);
-            //world.carnivores.add(this);
+            
         } 
-               
+            //update the health bar   
         update();
     }
     public void update() 
@@ -57,12 +51,11 @@ public class pStats extends Actor
             temp = getImage();
             temp.clear();
         }
-        //temp.clear();
-        //int health = owner.health;
-        //setLocation(owner.x, owner.y-size);
-        //update the image
+        //health will be the size of the organisms size
         health = organismStats.size();
+        //maxHealth is all the organisms in the world
         maxHealth = world.plants.size() + world.carnivores.size() + world.herbivores.size() + world.omnivores.size() + world.scavengers.size(); 
+        //calculate the health and change the health bar accordingly to its health
         if (health == maxHealth|| health <= 0){return;}
         int red = 0, green = 0;
         try{
@@ -76,10 +69,5 @@ public class pStats extends Actor
         temp.setColor(color); 
         temp.fill();
         temp.scale(1+100*health/maxHealth, 8);
-        //setImage(temp);
-        //update the position
-        //setLocation(owner.x+temp.getWidth()/2, owner.y-size);
-
-        // Add your action code here.
     }    
 }
