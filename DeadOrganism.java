@@ -16,15 +16,12 @@ public class DeadOrganism extends AbstOrganism
     //basic default constructor, this is where I initialize all the variables that must be in this class (because it inherits from the abstract class)
 
     public DeadOrganism(){
-        //since this is the lowest on the food chain, I give it a trophicLevel of value 0
+        //since this dead, I give it a trophicLevel of value -1
         trophicLevel = -1;
-        //always set the age to 0 when an algae is created
         age = 0;
-        //add the algae to the world when created
+        //add the carrion to the world when created
         world.carrion.add(this);
-        //This means that the algae needs 25 energy to reproduce
         repro_energy = 100;
-        //This means that the algae will be 100 by 100 in size
         siz = 50;//(int) (0.2*energy+5);
         health = 100;
         energy = 70;
@@ -56,26 +53,25 @@ public class DeadOrganism extends AbstOrganism
         feed();
         die();
     }
-    //this function basically adds energy to the plant, I add 0.1 energy per frame
     public void feed(){
     }
-    //Here I use the energy that the algae has to grow the algae to a certain size
+    //Here I use the energy that the carrion has lost to reduce the carrion to a certain size
     public void grow(){
-        //increase the size of the image bases on the current energy
+        //decrease the size of the image bases on the current energy
         //System.out.println("Grow Not implemented");
         energy -= (siz *0.0001);
         siz = (int) energy + 1;
         getImage().scale(siz,siz);
     }
-    //this program checks if the algae has enough energy to reproduce, and then creates two new algaes and kills off the old one
+    
     public void reproduce(){
 
     }
-    //this function adds age to the algae ( I dont really use it right now, but feel free to use it)
+    
     public void age(){
 
     }
-    //this function is where the algae dies 
+    // when the carrion completely decomposes
     public void die(){
         if (energy <= 1){
             //remove them from all lists
@@ -93,7 +89,7 @@ public class DeadOrganism extends AbstOrganism
         //not needed
         //System.out.println("Not implemented");
     }
-    //try to complete this
+    
     public int mutate(int trait) {
        int mutate = Greenfoot.getRandomNumber(100);
         
