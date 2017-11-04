@@ -24,6 +24,7 @@ public class AnythingEater extends AbstOrganism
         //this is an omnivore, hence trophicLevel = 2
         trophicLevel = 3;
         age = 0;
+        //add the omnivore to the world when created
         world.omnivores.add(this);
         repro_energy = 100;
         siz = 25;//(int) (0.2*energy+5);
@@ -76,33 +77,41 @@ public class AnythingEater extends AbstOrganism
             removeTouching(AbstOrganism.class);
         }
     }
-
+    
+    //Here I use the energy that the omnivore has to grow the algae to a certain size
     public void grow(){
+        //increase the size of the image bases on the current energy
         energy -= (siz *0.0001);
         siz = (int)energy + 1;//(int) (0.2*energy+5);
         getImage().scale(siz,siz);
     }
-    //this program checks if the omnivore has enough energy to reproduce, and then creates a new omnivore
+    //this function checks if the omnivore has enough energy to reproduce, and then creates two new omnivores and kills off the old one while the new ones inherit the previous omnivore's traits and have a chance to mutate their traits
     public void reproduce(){
+        //check to see of there is enough energy to split
+        //if yes then call the constructor for new ones and kill the last one
         if (energy >= repro_energy){
+        
+            // spawn new omnivore
             world.omnivores.add(new AnythingEater());
             world.addObject(world.omnivores.get(world.omnivores.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
-
+            // new omnivore inherits original omnivore's traits and has a chance to mutate them
             world.omnivores.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
             world.omnivores.get(world.omnivores.size()-1).siz = mutate(siz);
             world.omnivores.get(world.omnivores.size()-1).speed = mutate(speed);
             world.omnivores.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
             world.omnivores.get(world.omnivores.size()-1).sight = mutate(sight);
             
+            // spawn new omnivore
             world.omnivores.add(new AnythingEater());
             world.addObject(world.omnivores.get(world.omnivores.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
-            
+            // new omnivore inherits original omnivore's traits and has a chance to mutate them
             world.omnivores.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
             world.omnivores.get(world.omnivores.size()-1).siz = mutate(siz);
             world.omnivores.get(world.omnivores.size()-1).speed = mutate(speed);
             world.omnivores.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
             world.omnivores.get(world.omnivores.size()-1).sight = mutate(sight);
             
+            // kill original omnivore
             die();
         }
     }
@@ -114,7 +123,7 @@ public class AnythingEater extends AbstOrganism
     public void die(){
         //the energy will decrease based off of size of animal
 
-        //???Add a corspe object???
+        /// Add a corspe object
         world.carrion.add(new DeadOrganism());
         world.addObject(world.carrion.get(world.carrion.size()-1),getX(),getY());
 
@@ -149,14 +158,18 @@ public class AnythingEater extends AbstOrganism
             turn(180);
         }
     }
-    //try to complete this
+    // when traits of an organism are inputed, there is a chance that it mutates and returns the newly mutated trait
     public int mutate(int trait) {
+       // generates random number between 0 and 100
        int mutate = Greenfoot.getRandomNumber(100);
         
+        // if the random number is less than or equal to the mutation rate
         if (mutate <= mutation_rate) {
+            // the inputed trait is mutated by adding the initial trait by the mutation factor
             trait = trait+(trait*((int) mutation_rate/100));
         }
         
+       // returns initial/mutated trait depending on if mutated
        return trait;
     }
 }
