@@ -34,6 +34,7 @@ public abstract class AbstOrganism extends Actor
     
     //This is an object of the AI class, which is neccessary so that the organims have 
     AI thinker;
+    Reproduce reproducer;
      //This variable is used to determine how far each organism can see
      int sight;
      
