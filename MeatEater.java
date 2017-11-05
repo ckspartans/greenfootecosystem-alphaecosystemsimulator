@@ -37,6 +37,7 @@ public class MeatEater extends AbstOrganism
         MyWorld world;
         targets = null;
         thinker = new AI(this);
+        reproducer = new Reproduce(this);
         sight = 75;
         energyFactor = 0;
         energyIndicator  = new EnergyBar(this,(int)energy);
@@ -61,7 +62,7 @@ public class MeatEater extends AbstOrganism
         feed();
 
         grow();
-        reproduce();
+        reproducer.reproduce();
         if(energy <= 1){
             die();
         }
