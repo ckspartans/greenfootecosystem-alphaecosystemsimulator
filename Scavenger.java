@@ -31,6 +31,7 @@ public class Scavenger extends AbstOrganism
         MyWorld world;
         targets = null;
         thinker = new AI(this);
+        reproducer = new Reproduce(this);
         sight = 300;
         energyFactor = 0;
         energyIndicator  = new EnergyBar(this,(int)energy); 
@@ -55,7 +56,7 @@ public class Scavenger extends AbstOrganism
         grow();
         //age();
         //interact();
-        reproduce();
+        reproducer.reproduce();
         //System.out.println("H : " + energy);
 
         // System.out.println("" + energyFactor);
