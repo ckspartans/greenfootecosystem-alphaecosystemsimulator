@@ -37,6 +37,7 @@ public class PlantEater extends AbstOrganism
         MyWorld world;
         targets = null;
         thinker = new AI(this);
+        reproducer = new Reproduce(this);
         sight = 100;
         energyFactor = 0;
         energyIndicator =  new EnergyBar(this,(int)energy);
@@ -58,7 +59,7 @@ public class PlantEater extends AbstOrganism
         move();
         feed();
         grow();   
-        reproduce();
+        reproducer.reproduce();
 
         if(energy <= 1){
             die();
