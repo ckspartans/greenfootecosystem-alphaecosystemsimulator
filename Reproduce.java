@@ -27,14 +27,22 @@ public class Reproduce
         
     }
     
-    
+    //this function checks if the organism has enough energy to reproduce, and then creates two new organisms and kills off the old one while the new ones inherit the previous organism's traits and have a chance to mutate their traits
     public void reproduce(){
         // stores variables required for reproduction and mutation (energy, repro_energy, and mutation_rate)
         energyToReproduce = reproducee.energy;
         mutationFactor = reproducee.mutation_rate;
         reproduceFactor = reproducee.repro_energy;
         
+        //check to see of there is enough energy to split
+        //if yes then call the constructor for new ones and kill the last one
         if (energyToReproduce >= reproduceFactor){
+            
+            // checks trophic level
+                // spawn new organisms of initial organism's type
+                // new organisms inherit original organisms' traits and has a chance to mutate them
+                    // this is done by going through all the organism's traits using a for loop and checking to mutate them individually using the parent organism's traits, if it does not mutate, just inherits parent organism's traits
+                // kills original organism
             if (reproducee.trophicLevel == 0) {
                 world.plants.add(new Algae());
                 world.addObject(world.plants.get(world.plants.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
