@@ -12,14 +12,19 @@ public class PlantEater extends AbstOrganism
      * Act - do whatever the Plants wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+     
+    //basic default constructor, this is where I initialize all the variables that must be in this class (because it inherits from the abstract class)
+    
 
     //This object target is used to get information about the target organism
     AbstOrganism target = null;
     //REFER TO ABSTORGANISM FOR DOCUMENTATION OF EACH VARIABLE
 
     public PlantEater(){
+       //this is a herbivore, hence trophicLevel = 1
         trophicLevel = 1;
         age = 0;
+        //add the herbivore to the world when created
         world.herbivores.add(this);
         repro_energy = 75;
         siz = 25;
@@ -62,6 +67,7 @@ public class PlantEater extends AbstOrganism
     }
 
     public void feed(){
+         //if a herbivore is touching an algae
         if(this.isTouching(Algae.class)){
             //add the appropriate energy to the herbivore
             energy += energyFactor * 0.1;
@@ -70,34 +76,42 @@ public class PlantEater extends AbstOrganism
             removeTouching(AbstOrganism.class);
         }
     }
-    //Here I use the energy that the algae has to grow the algae to a certain size
+    //Here I use the energy that the herbivore has to grow the herbivore to a certain size
     public void grow(){
+       //increase the size of the image based on the current energy
         energy -= (siz *0.0001);
         siz = (int)energy + 1; //(int) (0.2*energy+10);
         getImage().scale(siz,siz);
     }
-    //this program checks if the herbivore has enough energy to reproduce, and then creates a new omnivore
+    //this function checks if the herbivore has enough energy to reproduce, and then creates two new herbivore and kills off the old one while the new ones inherit the previous herbivore's traits and have a chance to mutate their traits
     public void reproduce(){
+        //check to see of there is enough energy to split
+        //if yes then call the constructor for new ones and kill the last one
         if (energy >= repro_energy){
             
+            // spawn new herbivore
             world.herbivores.add(new PlantEater());
             world.addObject(world.herbivores.get(world.herbivores.size()-1), getX() + Greenfoot.getRandomNumber(100), getY() + Greenfoot.getRandomNumber(100));
             
+            // new herbivore inherits original herbivore's traits and has a chance to mutate them
             world.herbivores.get(world.herbivores.size()-1).repro_energy = mutate(repro_energy);
             world.herbivores.get(world.herbivores.size()-1).siz = mutate(siz);
             world.herbivores.get(world.herbivores.size()-1).speed = mutate(speed);
             world.herbivores.get(world.herbivores.size()-1).mutation_rate = mutate(mutation_rate);
             world.herbivores.get(world.herbivores.size()-1).sight = mutate(sight);
             
+            // spawn new herbivore
             world.herbivores.add(new PlantEater());
             world.addObject(world.herbivores.get(world.herbivores.size()-1), getX() - Greenfoot.getRandomNumber(100), getY() - Greenfoot.getRandomNumber(100));
             
+            // new herbivore inherits original herbivore's traits and has a chance to mutate them
             world.herbivores.get(world.herbivores.size()-1).repro_energy = mutate(repro_energy);
             world.herbivores.get(world.herbivores.size()-1).siz = mutate(siz);
             world.herbivores.get(world.herbivores.size()-1).speed = mutate(speed);
             world.herbivores.get(world.herbivores.size()-1).mutation_rate = mutate(mutation_rate);
             world.herbivores.get(world.herbivores.size()-1).sight = mutate(sight);
             
+            // kill original herbivore
             die();
         }
     }
@@ -105,10 +119,10 @@ public class PlantEater extends AbstOrganism
     public void age(){
 
     }
-    //this function is where the algae dies 
+    //this function is where the organism dies 
     public void die(){
         //if they ran out of energy
-        //???Add a corspe object???
+        // Add a corspe object
         world.carrion.add(new DeadOrganism());
         world.addObject(world.carrion.get(world.carrion.size()-1),getX(),getY());
 
@@ -140,14 +154,18 @@ public class PlantEater extends AbstOrganism
             turn(180);
         }
     }
-    //try to complete this
+    // when traits of an organism are inputed, there is a chance that it mutates and returns the newly mutated trait
     public int mutate(int trait) {
+       // generates random number between 0 and 100
        int mutate = Greenfoot.getRandomNumber(100);
         
+        // if the random number is less than or equal to the mutation rate
         if (mutate <= mutation_rate) {
+            // the inputed trait is mutated by adding the initial trait by the mutation factor
             trait = trait+(trait*((int) mutation_rate/100));
         }
         
+       // returns initial/mutated trait depending on if mutated
        return trait;
     }
 }
