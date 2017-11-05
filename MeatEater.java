@@ -77,7 +77,7 @@ public class MeatEater extends AbstOrganism
             removeTouching(AbstOrganism.class);
         }
     }
-    //Here I use the energy that the carnivore has to grow the omnivore to a certain size
+    //Here I use the energy that the carnivore has to grow the carnivore to a certain size
     public void grow(){
         //increase the size of the image bases on the current energy
         energy -= (siz *0.0001);
