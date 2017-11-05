@@ -68,13 +68,13 @@ public class Reproduce
             }
             
             else if (reproducee.trophicLevel == 2) {
-                world.scavengers.add(new PlantEater());
+                world.scavengers.add(new Scavenger());
                 world.addObject(world.scavengers.get(world.scavengers.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
                 for (int i = 0; i < org.size(); i++) {
                     mutate(i);
                 }
                 
-                world.scavengers.add(new PlantEater());
+                world.scavengers.add(new Scavenger());
                 world.addObject(world.scavengers.get(world.scavengers.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
                 for (int i = 0; i < org.size(); i++) {
                     mutate(i);
