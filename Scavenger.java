@@ -12,12 +12,14 @@ public class Scavenger extends AbstOrganism
      * Act - do whatever the Plants wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-
-    //This object target is used to get information about the target organism
+     
+    //basic default constructor, this is where I initialize all the variables that must be in this class (because it inherits from the abstract class)
+    
+    //REFER TO ABSTORGANISM FOR DOCUMENTATION OF EACH VARIABLE
     public Scavenger(){
+        //this is a scavenger, hence trophicLevel = 2
         trophicLevel = 2;
         age = 0;
-        // world.herbivores.add(this);
         repro_energy = 75;
         siz = 30;//(int) (0.2*energy) + 50;
         health = 100;
@@ -64,23 +66,19 @@ public class Scavenger extends AbstOrganism
     }
     //this function basically adds energy to the plant, I add 0.1 energy per frame
     public void feed(){
-        //increase the energy amount
-        //later I will probably take into acount the amount of overlap with other ogranisms
-        //System.out.println("Feed Not implemented");
+        
+        //if a scavenger is touching a carrion
         if(this.isTouching(DeadOrganism.class)){
-            //System.out.println("heloolloolol");
-            //remove them from all lists
-            //world.plants.remove(getIntersectingObjects(Algae.class));
-
+            
+            //increase the energy amount
             energy += energyFactor * 0.1;
-            // System.out.println("I made it");
+            //remove them from all lists
             thinker.kill();
-            removeTouching(AbstOrganism.class);
-
             //remove them from the world
+            removeTouching(AbstOrganism.class);
         }
     }
-    //Here I use the energy that the algae has to grow the algae to a certain size
+    //Here I use the energy that the herbivore has to grow the herbivore to a certain size
     public void grow(){
         //increase the size of the image bases on the current energy
         //System.out.println("Grow Not implemented");
@@ -88,29 +86,39 @@ public class Scavenger extends AbstOrganism
         siz = (int)energy + 1; //(int) (0.2*energy+10);
         getImage().scale(siz,siz);
     }
-    //this program checks if the algae has enough energy to reproduce, and then creates two new algaes and kills off the old one
+    //this function checks if the scavenger has enough energy to reproduce, and then creates two new scavengers and kills off the old one while the new ones inherit the previous scavenger's traits and have a chance to mutate their traits
     public void reproduce(){
-        //check tp see of their is enough energy (size??) to split
+        //check to see of there is enough energy to split
         //if yes then call the constructor for new ones and kill the last one
         if (energy >= repro_energy){
+            // spawn new scavenger
             world.scavengers.add(new Scavenger());
             world.addObject(world.scavengers.get(world.scavengers.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
 
-            world.omnivores.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
-            world.omnivores.get(world.omnivores.size()-1).siz = mutate(siz);
-            world.omnivores.get(world.omnivores.size()-1).speed = mutate(speed);
-            world.omnivores.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
-            world.omnivores.get(world.omnivores.size()-1).sight = mutate(sight);
+            // new scavenger inherits original scavenger's traits and has a chance to mutate them
+            world.scavenger.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
+            world.scavenger.get(world.omnivores.size()-1).siz = mutate(siz);
+            world.scavenger.get(world.omnivores.size()-1).speed = mutate(speed);
+            world.scavenger.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
+            world.scavenger.get(world.omnivores.size()-1).sight = mutate(sight);
             
+            // spawn new scavenger
             world.scavengers.add(new Scavenger());
-            world.addObject(world.scavengers.get(world.scavengers.size()-1), getX() - Greenfoot.getRandomNumber(200), getY() - Greenfoot.getRandomNumber(200));
+            world.addObject(world.scavengers.get(world.scavengers.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
+
+            // new scavenger inherits original scavenger's traits and has a chance to mutate them
+            world.scavenger.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
+            world.scavenger.get(world.omnivores.size()-1).siz = mutate(siz);
+            world.scavenger.get(world.omnivores.size()-1).speed = mutate(speed);
+            world.scavenger.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
+            world.scavenger.get(world.omnivores.size()-1).sight = mutate(sight);
             
-            
+            // kill original scavenger
             die();
         }
         //System.out.println("Reproduce Not implemented");
     }
-    //this function adds age to the algae ( I dont really use it right now, but feel free to use it)
+    //this function adds age to the scavenger
     public void age(){
         //increase age
         //and check to see if past lifespan
@@ -118,12 +126,11 @@ public class Scavenger extends AbstOrganism
         energy -= 0.25;
         // System.out.println("Not implemented");
     }
-    //this function is where the algae dies 
+    //this function is where the scavenger dies 
     public void die(){
-        //I will make this based off of size soon
         //energy = (energy) - (0.02 * siz);
 
-        //???Add a corspe object???
+        // Add a corspe object
 
         //remove them from all lists
         world.scavengers.remove(this);
@@ -160,14 +167,18 @@ public class Scavenger extends AbstOrganism
             turn(180);
         }
     }
-    //try to complete this
+    /// when traits of an organism are inputed, there is a chance that it mutates and returns the newly mutated trait
     public int mutate(int trait) {
+       // generates random number between 0 and 100
        int mutate = Greenfoot.getRandomNumber(100);
         
+        // if the random number is less than or equal to the mutation rate
         if (mutate <= mutation_rate) {
+            // the inputed trait is mutated by adding the initial trait by the mutation factor
             trait = trait+(trait*((int) mutation_rate/100));
         }
         
+       // returns initial/mutated trait depending on if mutated
        return trait;
     }
 
