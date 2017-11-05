@@ -51,7 +51,7 @@ public class Reproduce
                 reproducee.die();
             }
             
-            if (reproducee.trophicLevel == 1) {
+            else if (reproducee.trophicLevel == 1) {
                 world.herbivores.add(new PlantEater());
                 world.addObject(world.herbivores.get(world.herbivores.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
                 for (int i = 0; i < org.size(); i++) {
@@ -67,7 +67,23 @@ public class Reproduce
                 reproducee.die();
             }
             
-            if (reproducee.trophicLevel == 2) {
+            else if (reproducee.trophicLevel == 2) {
+                world.scavengers.add(new PlantEater());
+                world.addObject(world.scavengers.get(world.scavengers.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
+                for (int i = 0; i < org.size(); i++) {
+                    mutate(i);
+                }
+                
+                world.scavengers.add(new PlantEater());
+                world.addObject(world.scavengers.get(world.scavengers.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
+                for (int i = 0; i < org.size(); i++) {
+                    mutate(i);
+                }
+                
+                reproducee.die();
+            }
+            
+            else if (reproducee.trophicLevel == 3) {
                 world.omnivores.add(new AnythingEater());
                 world.addObject(world.omnivores.get(world.omnivores.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
                 for (int i = 0; i < org.size(); i++) {
@@ -83,7 +99,7 @@ public class Reproduce
                 reproducee.die();
             }
             
-            if (reproducee.trophicLevel == 3) {
+            else if (reproducee.trophicLevel == 4) {
                 world.carnivores.add(new MeatEater());
                 world.addObject(world.carnivores.get(world.carnivores.size()-1), reproducee.getX() + Greenfoot.getRandomNumber(20), reproducee.getY() + Greenfoot.getRandomNumber(20));
                 for (int i = 0; i < org.size(); i++) {
