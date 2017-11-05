@@ -39,6 +39,7 @@ public class Algae extends AbstOrganism
         sight = 0;
         energyIndicator =  new EnergyBar(this,(int)energy);
         energyFactor = 0; 
+        reproducer = new Reproduce(this);
     }
 
     public void act() 
@@ -57,7 +58,7 @@ public class Algae extends AbstOrganism
         age();
         grow();
         feed();
-        reproduce();
+        reproducer.reproduce();
        
     }
     //this function basically adds energy to the plant, I add 0.1 energy per frame
