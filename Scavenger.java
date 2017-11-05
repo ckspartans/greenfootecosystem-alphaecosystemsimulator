@@ -97,22 +97,22 @@ public class Scavenger extends AbstOrganism
             world.addObject(world.scavengers.get(world.scavengers.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
 
             // new scavenger inherits original scavenger's traits and has a chance to mutate them
-            world.scavenger.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
-            world.scavenger.get(world.omnivores.size()-1).siz = mutate(siz);
-            world.scavenger.get(world.omnivores.size()-1).speed = mutate(speed);
-            world.scavenger.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
-            world.scavenger.get(world.omnivores.size()-1).sight = mutate(sight);
+            world.scavenger.get(world.scavengers.size()-1).repro_energy = mutate(repro_energy);
+            world.scavenger.get(world.scavengers.size()-1).siz = mutate(siz);
+            world.scavenger.get(world.scavengers.size()-1).speed = mutate(speed);
+            world.scavenger.get(world.scavengers.size()-1).mutation_rate = mutate(mutation_rate);
+            world.scavenger.get(world.scavengers.size()-1).sight = mutate(sight);
             
             // spawn new scavenger
             world.scavengers.add(new Scavenger());
             world.addObject(world.scavengers.get(world.scavengers.size()-1), getX() + Greenfoot.getRandomNumber(200), getY() + Greenfoot.getRandomNumber(200));
 
             // new scavenger inherits original scavenger's traits and has a chance to mutate them
-            world.scavenger.get(world.omnivores.size()-1).repro_energy = mutate(repro_energy);
-            world.scavenger.get(world.omnivores.size()-1).siz = mutate(siz);
-            world.scavenger.get(world.omnivores.size()-1).speed = mutate(speed);
-            world.scavenger.get(world.omnivores.size()-1).mutation_rate = mutate(mutation_rate);
-            world.scavenger.get(world.omnivores.size()-1).sight = mutate(sight);
+            world.scavenger.get(world.scavengers.size()-1).repro_energy = mutate(repro_energy);
+            world.scavenger.get(world.scavengers.size()-1).siz = mutate(siz);
+            world.scavenger.get(world.scavengers.size()-1).speed = mutate(speed);
+            world.scavenger.get(world.scavengers.size()-1).mutation_rate = mutate(mutation_rate);
+            world.scavenger.get(world.scavengers.size()-1).sight = mutate(sight);
             
             // kill original scavenger
             die();
