@@ -78,7 +78,7 @@ public class AnythingEater extends AbstOrganism
         }
     }
     
-    //Here I use the energy that the omnivore has to grow the algae to a certain size
+    //Here I use the energy that the omnivore has to grow the omnivore to a certain size
     public void grow(){
         //increase the size of the image bases on the current energy
         energy -= (siz *0.0001);
