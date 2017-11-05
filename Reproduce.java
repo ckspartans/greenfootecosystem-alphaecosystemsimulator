@@ -4,15 +4,23 @@ import java.util.*;
 public class Reproduce
 {
     
+    //The object reproducee is used to hold the organism that is reproducing
     public AbstOrganism reproducee;
     MyWorld world;
     
+    // this double stores the organism's energy, which is the amount of energy the organism has
     public double energyToReproduce;
+    
+    // this double stores the organism's mutation rate, which is the chance the organism will mutate any given trait
     public double mutationFactor;
+    
+    // this int stores the organism's repro_energy, which is the energy needed to reproduce
     public int reproduceFactor;
     
+    // this arraylist stores the different kinds of organisms found in this ecosystem
     public ArrayList <AbstOrganism> org = new ArrayList<AbstOrganism> (5);
     
+    //The paramters of Reproduction is organism itself
     public Reproduce(AbstOrganism _reproducee)
     {
         reproducee = _reproducee;
@@ -21,6 +29,7 @@ public class Reproduce
     
     
     public void reproduce(){
+        // stores variables required for reproduction and mutation (energy, repro_energy, and mutation_rate)
         energyToReproduce = reproducee.energy;
         mutationFactor = reproducee.mutation_rate;
         reproduceFactor = reproducee.repro_energy;
@@ -93,13 +102,18 @@ public class Reproduce
         }
     }
     
+    // when traits of an organism are inputed, there is a chance that it mutates and returns the newly mutated trait
     public void mutate(int trait) {
+        // generates random number between 0 and 100
         int mutate = Greenfoot.getRandomNumber(100);
         
+        // if the random number is less than or equal to the mutation rate
         if (mutate <= mutationFactor) {
+            // the inputed trait is mutated by adding the initial trait by the mutation factor
             trait = trait+trait*(int) mutationFactor/100;
         }
     }
+    
     
     public ArrayList<AbstOrganism> removeNull(ArrayList<AbstOrganism> s){
         for(int i = 0; i < s.size(); i++){
